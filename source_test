@@ -1,0 +1,10 @@
+# check source code for keyword
+
+def source_test (firefox_driver, keyword):
+	source_code = firefox_driver.page_source
+	if keyword in source_code:
+		# results_sheet.update_cell(site_no, col_no, 'keyword(s) found')
+                return 1
+	else:
+		# results_sheet.update_cell(site_no, col_no, 'keyword(s) not found')
+		return 0
