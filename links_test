@@ -1,0 +1,19 @@
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+import source_test
+
+def links_test (firefox_driver, secondary_link_url):
+
+	try:
+                # firefox_driver.implicitly_wait(3)
+                secondary_link_url.click()
+                driver.get("chrome://newtab/")
+                # source = firefox_driver.page_source
+                if source_test.source_test(firefox_driver, "404") == 1:
+                        return 0
+                else:
+                        return 1
+	except:
+		return 0
