@@ -2,28 +2,25 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 import source_test
 
 def links_test (firefox_driver, secondary_link_url):
-	#replaced 'a' with secondary_link_url
-    page_name = str(secondary_link_url.get_attribute('href'))
-    # takes in a tuple
-    myElem = WebDriverWait(firefox_driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//a[@href]")))
+    # open each link in a new window
+    driver2 = webdriver.Firefox()
     try:
-    	# open link in new tab
-        firefox_driver.find_element_by_tag_name('a').send_keys(Keys.COMMAND + 't')
+        driver2.get(secondary_link_url)
+        print('opened '+str(secondary_link_url))
+        link = str(firefox_driver.current_url)
 
-        # firefox_driver.implicitly_wait(1)
-        # secondary_link_url.click()
-
-        if source_test.source_test(firefox_driver, "404") == 1:
-            return page_name
+        if source_test.source_test(driver2, "404 Not Found") == 1:
+            driver2.quit()
+            return 0
         else:
-            return "pass"
+            driver2.quit()
+            return 1 # success
                 
     except: # did not open
-        return page_name
+        print('failed '+str(secondary_link_url))
+        driver2.quit()
+        return 0
