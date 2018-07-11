@@ -1,7 +1,7 @@
 # Testing-Automation
 
-Scripts used for UCSC ITS browser functional testing with Selenium.
-Selenium's WebDriver lets us open the browser and interact with the webpage through running a Python script.
+Scripts written for UCSC ITS department, implement Python-Selenium automated browser testing.
+The Selenium WebDriver opens and interacts with the elements on each website.
 
 List of files
 ---------------------
@@ -16,6 +16,8 @@ wcms_footer_header_test.py
 
 File Descriptions
 ---------------------
+lastpass-login.py: a way to log in to LastPass password manager via Python to grab login credentials for tests.
+
 client_secret.json: service account credentials for editing google spreadsheets
 
 spreadsheet_client.py: top level calling function for all site tests
