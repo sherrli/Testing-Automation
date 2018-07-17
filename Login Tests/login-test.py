@@ -5,9 +5,9 @@
 intro="""
 ----------------------------------------------------------------
 Name        : Login Test
-Description : Verify pages have correct content on dev sites.
+Description : Automated login tests for various servers and sites.
 Author      : shli17
-File        : ches-login.py
+File        : login-test.py
 ----------------------------------------------------------------
 """
 print(intro)
@@ -19,16 +19,21 @@ from selenium.webdriver.common.keys import Keys
 import os
 import json
 import time
+import subprocess
+import lastpass-login # login script
 
 
-class ches_login_test(unittest.TestCase):
+class LoginTest(unittest.TestCase):
     browsers = None
     pwsites = None
     bdsites = None
-
+    types = None
+    cred_file = None # prompt user input
+    while (types!='dev' and types!='dev-new' and types!='prod'):
+        types = input("Enter the server you wish to test (dev, dev-new, stage, or prod): ")
 
     def __init__(self, *args, **kwargs):
-        super(ches_login_test, self).__init__(*args, **kwargs)
+        super(LoginTest, self).__init__(*args, **kwargs)
         if self.browsers is None:
             self.setupBrowsers()
         if self.pwsites is None:
@@ -46,35 +51,97 @@ class ches_login_test(unittest.TestCase):
                     pass
 
     def setUp(self):
-        username = None
-        password = None
-        mm = None
-        dd = None
-        yr = None
+        pass
 
     def tearDown(self):
         pass
 
-
-    def setupPwSites(self):
-        # use json credentials file
-        with open(os.getcwd() + '/ches-login-pw.json') as data_file:
-            data = json.load(data_file)
-            self.pwsites = {}
-            for siteData in data['credentials']:
+    def setupPwSites(self): #TODO: make lastpass cred file a parameter, grab user input in beginning
+        creds = lastpass-login.get_all_values('lastpass-creds-file-name.json')
+        # turn STRING into JSON:
+        jcreds = json.loads(creds)
+        # map a JSON DICT to a python dict
+        self.pwsites = {}
+        if self.types=='dev-new':
+            substring = ".ucsc.edu"
+            for siteData in jcreds['credentials']:
                 site = {}
+                url = siteData['dev_url']
+                i = url.index(substring)
+                site['dev_url'] = url[:i] + "-new" + url[i:] # append '-new' after '-dev' in url
+                site['id'] = siteData['id']
+                site['password'] = siteData['password']
+                self.pwsites[siteData['siteName']] = site
+        elif self.types=='prod':
+            for siteData in jcreds['credentials']:
+                site = {}
+                # remove '-dev' from url
+                site['dev_url'] = siteData['dev_url'].replace("-dev", "")
+                site['id'] = siteData['id']
+                site['password'] = siteData['password']
+                self.pwsites[siteData['siteName']] = site
+        elif self.types=='stage':
+            for siteData in jcreds['credentials']:
+                site = {}
+                # replace '-dev' with '-stg'
+                site['dev_url'] = siteData['dev_url'].replace("-dev", "-stg")
+                site['id'] = siteData['id']
+                site['password'] = siteData['password']
+                self.pwsites[siteData['siteName']] = site
+        else: # self.types=='dev'
+            for siteData in jcreds['credentials']:
+                site = {}
+                # default, no change
                 site['dev_url'] = siteData['dev_url']
                 site['id'] = siteData['id']
                 site['password'] = siteData['password']
                 self.pwsites[siteData['siteName']] = site
 
+
     def setupBdSites(self):
-        # use json credentials file
-        with open(os.getcwd() + '/ches-login-bd.json') as data_file:
-            data = json.load(data_file)
-            self.bdsites = {}
-            for siteData in data['credentials']:
+        # CALL LOGIN_LP HERE INSTEAD
+        # SAVE THE RETURN STRING TO A PYTHON LIST/DICT
+        creds = lastpass-login.get_all_values('lastpass-file-name.json')
+        jcreds = json.loads(creds)
+        self.bdsites = {}
+        if self.types=='dev-new':
+            substring = ".ucsc.edu"
+            for siteData in jcreds['credentials']:
                 site = {}
+                # append '-new' after '-dev'
+                url = siteData['dev_url']
+                i = url.index(substring)
+                site['dev_url'] = url[:i] + "-new" + url[i:]
+                site['id'] = siteData['id']
+                site['mm'] = siteData['mm']
+                site['dd'] = siteData['dd']
+                site['yr'] = siteData['yr']
+                self.bdsites[siteData['siteName']] = site
+        elif self.types=='prod':
+            substring = "-dev"
+            for siteData in jcreds['credentials']:
+                site = {}
+                # remove '-dev' from default url
+                site['dev_url'] = siteData['dev_url'].replace(substring, "")
+                site['id'] = siteData['id']
+                site['mm'] = siteData['mm']
+                site['dd'] = siteData['dd']
+                site['yr'] = siteData['yr']
+                self.bdsites[siteData['siteName']] = site
+        elif self.types=='stage':
+            for siteData in jcreds['credentials']:
+                site = {}
+                # replace '-dev' with '-stg'
+                site['dev_url'] = siteData['dev_url'].replace("-dev", "-stg")
+                site['id'] = siteData['id']
+                site['mm'] = siteData['mm']
+                site['dd'] = siteData['dd']
+                site['yr'] = siteData['yr']
+                self.bdsites[siteData['siteName']] = site
+        else: # self.types=='dev'
+            for siteData in jcreds['credentials']:
+                site = {}
+                # default, no change
                 site['dev_url'] = siteData['dev_url']
                 site['id'] = siteData['id']
                 site['mm'] = siteData['mm']
@@ -88,7 +155,7 @@ class ches_login_test(unittest.TestCase):
 
         try:
             chrome = webdriver.Chrome() #search path
-            #chrome = webdriver.Chrome('/usr/local/bin/chromedriver')
+            # chrome = webdriver.Chrome('/usr/local/bin/chromedriver') for Mac OS
             chrome.implicitly_wait(30)
             self.browsers.append(chrome)
 
