@@ -4,7 +4,7 @@
 
 intro="""
 ----------------------------------------------------------------
-Name        : Login Test
+Name        : Login Verification Test
 Description : Automated login tests for various servers and sites.
 Author      : shli17
 File        : login-test.py
@@ -16,12 +16,13 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-import os
+
 import json
-import time
 import subprocess
 import lastpass-login # login script
 
+import os
+import time
 
 class LoginTest(unittest.TestCase):
     browsers = None
@@ -575,4 +576,8 @@ class LoginTest(unittest.TestCase):
 # TODO: Verify that logout buttons actually work
 
 if __name__ == "__main__":
+    username = ""
+    while "@ucsc.edu" not in username:
+        username = input("Enter LastPass username: ")
+    subprocess.call(['lpass', 'login', username])
     unittest.main()
