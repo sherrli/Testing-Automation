@@ -1,10 +1,11 @@
 # Testing-Automation
 
-Scripts written for UCSC ITS department, implement Python-Selenium automated browser testing.
-The Selenium WebDriver opens and interacts with the elements on each website.
+Automated browser tests written for UCSC Information Technology Services.
+Test scripts written using Python3.7, Selenium API, chromedriver, geckodriver, and LastPass CLI.
+The webdriver object opens websites and and interacts with webelements.
 
-List of files
----------------------
+List of files in initial-tests
+------------------------------
 spreadsheet_client.py
 basic_tests.py
 advanced_tests.py
@@ -15,7 +16,7 @@ wcms_footer_header_test.py
 
 
 File Descriptions
----------------------
+------------------------------
 lastpass-login.py: a way to log in to LastPass password manager via Python to grab login credentials for tests.
 
 client_secret.json: service account credentials for editing google spreadsheets
@@ -44,4 +45,36 @@ wcms_footer_header_test.py: searches WCMS pages for the UCSC header and footer
 	Calls source_test.py to search for address and Calendars.
 
 
+List of files in Login Tests
+------------------------------
+chain-keys.py
+decode_credentials.py
+encode_credentials.py
+format-creds.json
+lastpass-login.py
+login-button-names.py
+login-test.py
+practice-logging.py
+singlesite-login-test.py
+
+
+File Descriptions
+------------------------------
+chain-keys.py: Practice using Selenium ActionChains to log in to a website
+
+decode_credentials.py: Login to a site using base 64 encoded credentials
+
+encode_credentials.py: Practice encoding credentials from a json file
+
+format-creds.json: JSON template to storing site names, site credentials, and site urls
+
+lastpass-login.py: Define an object with attributes that include a site's url and credentials to log in. Grabs these credentials using LastPass cli. Assumes you are already logged in to LastPass on your command line.
+
+login-button-names.py: Names of webelements and buttons on various sites
+
+login-test.py: Generic login test using lastpass-login.py and python's subprocess module
+
+practice-logging.py: Practice using python's logging module
+
+singlesite-login-test.py: Generic test to determine whether a site requires password or birthday to log in
 
