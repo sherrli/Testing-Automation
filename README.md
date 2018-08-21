@@ -4,7 +4,7 @@ Automated browser tests written for UCSC Information Technology Services.
 Test scripts written using Python3.7, Selenium API, chromedriver, geckodriver, and LastPass CLI.
 The webdriver object opens websites and and interacts with webelements.
 
-List of files in initial-tests
+List of files in Initial Tests
 ------------------------------
 spreadsheet_client.py
 basic_tests.py
