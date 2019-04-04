@@ -13,6 +13,8 @@ Main Folders
 **headless** Headless title tests for CHES, IDM, and LAMP, to be run remotely on a Nebula (CentOS 7) VM. These tests are used in the Jenkins pipeline. <br/>
 **ches** Smoke tests and functional tests for CHES sites. <br/>
 **initial-tests** My earlier practice tests for verifying links on pages, encoding and decoding strings. <br/>
+**demo** Demo scripts for beginners. Includes templates for Action Chaining, finding input boxes, login tests, and headless chrome.
+
 
 
 Main APIs
