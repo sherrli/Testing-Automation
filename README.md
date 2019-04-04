@@ -10,8 +10,9 @@ The webdriver object opens websites and and interacts with webelements.
 
 Main Folders
 ============
-**headless-testing** Includes headless title tests for CHES, IDM, and LAMP, to be run remotely on a Nebula VM. These tests are used in Jenkin's Selenium pipeline. <br/>
-**CHES** Includes smoke tests and functional tests for CHES sites. <br/>
+**headless** Headless title tests for CHES, IDM, and LAMP, to be run remotely on a Nebula (CentOS 7) VM. These tests are used in the Jenkins pipeline. <br/>
+**ches** Smoke tests and functional tests for CHES sites. <br/>
+**initial-tests** My earlier practice tests for verifying links on pages, encoding and decoding strings. <br/>
 
 
 Main APIs
