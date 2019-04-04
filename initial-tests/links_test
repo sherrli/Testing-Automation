@@ -1,10 +1,11 @@
-from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import Select
+# Function to check that a site does not have the "404" error visible.
 
-import source_test
+from selenium import webdriver
+#from selenium.common.exceptions import NoSuchElementException
+#from selenium.common.exceptions import NoAlertPresentException
+#from selenium.webdriver.common.keys import Keys
+#from selenium.webdriver.support.ui import Select
+
 
 def links_test (firefox_driver, secondary_link_url):
     # open each link in a new window
