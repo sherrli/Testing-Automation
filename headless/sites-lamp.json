@@ -1,0 +1,15 @@
+{"sites":[
+        {"siteName":"its","url": "https://its-dev-lamp-1.ucsc.edu/", "title": "its-dev-lamp-1"},
+        {"siteName":"itsserverstatus","url": "http://its-dev-lamp-1.ucsc.edu/server-status", "title": "Apache Status"},
+        {"siteName":"its9002","url": "http://its-dev-lamp-9002.ucsc.edu/", "title": "its-dev-lamp-9002"},
+        {"siteName":"its9004","url": "http://its-dev-lamp-9004.ucsc.edu/", "title": "its-dev-lamp-9004"},
+        {"siteName":"corgrants","url": "https://corgrants-dev.ucsc.edu", "title": "Academic Research Grants"},
+        {"siteName":"cars","url": "https://cars-dev.ucsc.edu", "title": "Academic Research Grants"},
+        {"siteName":"donatemeals","url": "https://donatemeals-dev.ucsc.edu/", "title": "UCSC"},
+        {"siteName":"discreet","url": "https://discreet-dev.ucsc.edu/", "title": "ToDo App"},
+        {"siteName":"etext","url": "https://webapps-dev.ucsc.edu/drc-etext/", "title": ""},
+        {"siteName":"webapps","url": "https://webapps-dev.ucsc.edu/", "title": "Index of /"},
+        {"siteName":"webappswcms","url": "https://webapps-dev.ucsc.edu/wcmsmanager/", "title": "WCMS Manager"},
+        {"siteName":"lamp9004","url": "https://lamp9004-dev.ucsc.edu/", "title": "Index of /"},
+        {"siteName":"mobile","url": "https://mobile-dev.ucsc.edu/", "title": "mobile-dev.ucsc.edu"}
+]}

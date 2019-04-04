@@ -1,0 +1,14 @@
+{"sites":[
+	{"siteName":"admissions","url": "https://admissions.sa.ucsc.edu", "title": "Majors and Courses"},
+	{"siteName":"admstats","url": "https://admstats.sa.ucsc.edu", "title": "UCSC Undergraduate Admissions Statistics"},
+   	{"siteName":"conrooms","url": "http://www.careercenter.ucsc.edu/conrooms/default.cfm", "title": "Bay Tree Conference Center Schedule"},
+	{"siteName":"careercentersecure-public","url": "http://www.careercenter.ucsc.edu/ers/erspub/main.cfm", "title": "UCSC Career Center Employee Request System"},
+	{"siteName":"careercentersecure-staff","url": "https://www.careercenter.ucsc.edu/ers/ersstaff/login/index.cfm", "title": "ERS Staff Login"},
+	{"siteName":"careercentersecure-student","url": "https://www.careercenter.ucsc.edu/ers/ersStudent/login/index.cfm", "title": "Employee Request System: Student Login"},
+	{"siteName":"eop","url": "https://eop.sa.ucsc.edu/OTSS/tutorsignup/mainmenu.cfm", "title": "UCSC Learning Support Services On-line Tutor Signup System"},
+	{"siteName":"eop2","url": "https://eop.sa.ucsc.edu/OTSS/tutorsignup/selectsubject.cfm", "title": "UCSC Learning Support Services On-line Tutor Signup System"},
+	{"siteName":"fixit","url": "https://fixit.sa.ucsc.edu/index.cfm", "title": "[Fixit] - Login"},
+	{"siteName":"fixit-queue","url": "https://fixit.sa.ucsc.edu/Queue/ServiceQueue.cfm", "title": "Portal Login"},
+	{"siteName":"jdbs","url": "https://www.sa.ucsc.edu/jdbs/", "title": "JDBS Login"},
+	{"siteName":"orientation","url": "https://orientation.sa.ucsc.edu/", "title": "Campus Orientation Programs"}
+]}
