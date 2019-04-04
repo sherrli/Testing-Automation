@@ -1,13 +1,18 @@
+# Click all links on the ww2 ucsc site, checking for broken links.
+# Requires installation of geckodriver.
+
+import links_test
+import timeit
+from selenium import webdriver
+
+firefox_driver = webdriver.Firefox()
+firefox_driver.implicitly_wait(30)
+
 if current_site_url == 'https://www2.ucsc.edu':
-        page_links = firefox_driver.find_elements_by_xpath("//a[@href]")
-        site_no2 = site_no
-        for page in page_links:
-            start_time = timeit.default_timer()
-            site_link = links_test.links_test(firefox_driver, page)
-            elapsed = timeit.default_timer() - start_time
-            # update spreadsheet with inactive links
-            if site_link != "pass":
-                results_sheet.update_cell(site_no2, 7, site_link)
-                results_sheet.update_cell(site_no2, 8, elapsed)
-                # page.get_attribute("href") + ' inactive' on each cell
-                site_no2 += 1
+    links = firefox_driver.find_elements_by_xpath("//a[@href]")
+    for page in links:
+        start_time = timeit.default_timer()
+        result = links_test.links_test(firefox_driver, page)
+        elapsed_time = timeit.default_timer() - start_time
+        print(result + page + "in" + str(elapsed_time))
+    # You can also log result to google spreadsheets, using gspread API.
