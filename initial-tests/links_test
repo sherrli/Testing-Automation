@@ -1,3 +1,4 @@
+from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.common.keys import Keys
@@ -7,20 +8,20 @@ import source_test
 
 def links_test (firefox_driver, secondary_link_url):
     # open each link in a new window
-    driver2 = webdriver.Firefox()
+    driver = webdriver.Firefox()
     try:
-        driver2.get(secondary_link_url)
+        driver.get(secondary_link_url)
         print('opened '+str(secondary_link_url))
         link = str(firefox_driver.current_url)
 
-        if source_test.source_test(driver2, "404 Not Found") == 1:
-            driver2.quit()
-            return 0
+        if "404 Not Found" in driver.page_source:
+            driver.quit()
+            return "fail"
         else:
-            driver2.quit()
-            return 1 # success
+            driver.quit()
+            return "pass"
                 
     except: # did not open
-        print('failed '+str(secondary_link_url))
-        driver2.quit()
-        return 0
+        print("driver failed to open")
+        driver.quit()
+        return
