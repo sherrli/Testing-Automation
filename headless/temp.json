@@ -1,0 +1,3 @@
+This should be an encoded/encrypted version of the GoogleSheets API Authorization credentials, which allow you to automate test logging results.
+We encrypt to avoid leaking sensitive data, but the script should decrypt it.
+Recommend saving it locally or on LastPass. 
