@@ -28,7 +28,7 @@ Main APIs
 **write_log.py**<br/>
   	My API for writing to the log file.
 
-**return_credentials.py**<br/>
+**get_credentials.py**<br/>
   	My API for interacting with LastPass through python. Contains functions to return credentials stored in LastPass. Assumes the tester has already logged into LastPass via their command line. You can save credentials in JSON format into a secure note, or as its own object.
 
 --------------------------------------------------------------------------
@@ -137,7 +137,7 @@ Search for "System Properties," go to "Advanced" tab, click "Environment Variabl
 
 ----------------------------------------
 7. Install LastPass CLI
-LastPass CLI is an open-source API that can be pulled from Github. The API functions are called in our file return_credentials.py.
+LastPass CLI is an open-source API that can be pulled from Github. The API functions are called in our file [get_credentials.py](https://github.com/shli17/Testing-Automation/blob/master/get_credentials.py).
 
 
 **For Linux/Mac**  
