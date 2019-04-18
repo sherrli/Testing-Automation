@@ -95,17 +95,15 @@ This package will be used to verify http response codes in various title tests.
 Sherri advises going to see the headless-testing README to learn more about configuring the tests to run headless in the Nebula server.  
 ----------------------------------------
 6. Install Chrome or Firefox Web Driver
-Some driver executables can be found in the folder [selenium-tests/drivers](https://stash.ucsc.edu:9990/projects/WEBOPS/repos/selenium-tests/browse/drivers).  
-We keep older version of the drivers there as backup, but it is recommended that you use the newest versions.  
+[geckodriver.exe found here](https://github.com/mozilla/geckodriver/releases) and [chromedriver.exe found here](http://chromedriver.chromium.org/downloads). Note that chrome does not work for headless testing, so firefox is the way to go for those.  
+Older version of the drivers are kept there as backup, but it is recommended that you use the newest versions.  
 Go to the drivers folder and extract the contents of chromedriver-v2.41-(your-OS-type) and geckodriver-v0.20.1-(your-OS-type).tar.gz into a non-git folder, then move them both to your /usr/local/bin (see below).  
 
-
-You can find newest releases to [chromedriver](http://chromedriver.chromium.org/downloads) and [geckodriver](https://github.com/mozilla/geckodriver/releases).
 
 
 During the time this README was written, we used chromedriver v2.41 and geckodriver v0.20.1  
 *Note:* There is no chromedriver for windows 64bit, but using the 32bit version works just fine.  
-*Note:* Geckodriver v0.21.0 has a tracked bug https://github.com/mozilla/geckodriver/issues/1304 so we use the previous v0.20.1.  
+*Note:* Geckodriver v0.21.0 has a [tracked bug](https://github.com/mozilla/geckodriver/issues/1304) so we use the previous v0.20.1.  
 
 
 Now we go through moving these drivers to the right folder.  
@@ -139,7 +137,7 @@ Search for "System Properties," go to "Advanced" tab, click "Environment Variabl
 
 ----------------------------------------
 7. Install LastPass CLI
-LastPass CLI is an open-source API that can be pulled from Github. The API functions are called in our file [return_credentials.py](https://stash.ucsc.edu:9990/projects/WEBOPS/repos/selenium-tests/browse/return_credentials.py).
+LastPass CLI is an open-source API that can be pulled from Github. The API functions are called in our file return_credentials.py.
 
 
 **For Linux/Mac**  
@@ -182,7 +180,7 @@ Running the tests
 Make sure you have the Git repository cloned to your local machine.  
 You can do this by changing to whichever directory you want the code to be saved in your machine, and running  
 ```
-$ git clone ssh://git@stash.ucsc.edu:9999/webops/selenium-tests.git
+$ git clone https://github.com/shli17/Testing-Automation.git
 ```
 Make sure to checkout the develop branch, where most tests are pushed to  
 ```
