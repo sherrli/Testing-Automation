@@ -5,7 +5,7 @@
 
 intro="""
 ----------------------------------------------------------------
-File        : exampletest_mucsc.py
+File        : test_mobileucsc.py
 Description : Test for m.ucsc.edu, example of a solo smoke test.
 Author      : Sherri Li
 ----------------------------------------------------------------
@@ -71,7 +71,7 @@ class MUcscTest(unittest.TestCase):
                 # Call the function to get status code from file check_status.py.
                 result = check_status.checkStatus(site, [200, 301, 302])
                 if result != True:
-                    print("FAIL: "+site['url']+" returns invalid http response code of "+str(result))
+                    print("FAIL: "+site+" returns invalid http response code of "+str(result))
 
                 assert(result==True)
 
