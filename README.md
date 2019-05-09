@@ -1,6 +1,7 @@
 # Testing-Automation
 
-Automated browser tests written for UCSC Information Technology Services.
+Automated browser tests written for UCSC Information Technology Services. Headless variations on the scripts, that I run in the Jenkins/Nebula pipeline, are located in headless.
+
 Test scripts written using Python3, Selenium API, chromedriver, geckodriver, and LastPass CLI.
 The webdriver object opens websites and and interacts with webelements.
 
@@ -215,6 +216,9 @@ https://addons.mozilla.org/en-US/firefox/
 6. You can save your test cases and export them as Python2.7 files. (The selenium-python commands are backwards compatible for Python3.7 and Python2.7)
 
 
-To Do
-======
-Figure out how to automate MFA, through LastPass CLI or Google Authenticator.
+"I want to contribute!"
+=======================
+That’s great to hear. Here are some side projects that I wanted to but never got around to finishing:  
+1. Automating MFA on a LastPass Service Account - for login tests!  
+2. If automating MFA doesn’t work, then using Python to generate MFA keys to pass in as parameters.  
+3. Optimizing the Jenkins build. Specifically, creating a Nebula node within Jenkins, rather than sending the repo from Jenkins to Nebula over ssh and scp just to run a single test. AKA - having Jenkins ‘git clone’ directly onto Nebula. (This part isn't really open-source though because you need access to my Jenkins).
