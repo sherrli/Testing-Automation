@@ -20,11 +20,14 @@ Main Folders
 
 Main APIs
 ============
+**spreadsheet.py**<br/>
+	A class with functions to use client credentials to write to google spreadsheets. Imported and used in various test scripts.
+	
 **check_status.py**<br/>
-	My API for making http requests on websites. Uses python requestsm module to verify the status code of a url before using webdriver to open websites.
+	My API for making http requests on websites. Uses python requests module to verify the status code of a url before using webdriver to open websites. Used in all selenium test scripts.
 
 **create_log.py**<br/>
-  	My API for generating a log file at the start of each test script. Uses python logging and datetime modules to generate a log folder and file based on current system time.
+  	My API for generating a log file at the start of each test script. Uses python logging and datetime modules to generate a log folder and file based on current system time. Kind of not used as much as spreadsheet.py.
 
 **write_log.py**<br/>
   	My API for writing to the log file.
@@ -116,19 +119,9 @@ $ sudo mv chromedriver /usr/local/bin
 $ sudo mv geckodriver /usr/local/bin
 ```
 
-If that doesn't work, here is a more GUI-friendly way to do it:  
-Show your hidden files by typing the following command into your terminal:  
+You can also do it via GUI folder and show/hide your hidden files with the following commands:  
 ```
 $ defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
-```
-Open your Finder  
-Click MacIntosh HD  
-Click 'usr' folder  
-Click 'local' folder  
-Click 'bin' folder  
-Drag and drop chromedriver.exe and geckodriver.exe from your Downloads folder to the /usr/local/bin folder  
-Hide your hidden files again by typing the following command:  
-```
 $ defaults write com.apple.finder AppleShowAllFiles -boolean false ; killall Finder
 ```
 
@@ -147,7 +140,7 @@ Check if you have Homebrew package manager installed:
 $ which brew
 ```
 
-If you DO NOT have Homebrew, run:  
+If you don't have Homebrew:  
 ```
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 $ brew install lastpass-cli --with-pinentry
@@ -182,23 +175,11 @@ Make sure you have the Git repository cloned to your local machine.
 You can do this by changing to whichever directory you want the code to be saved in your machine, and running  
 ```
 $ git clone https://github.com/shli17/Testing-Automation.git
-```
-Make sure to checkout the develop branch, where most tests are pushed to  
-```
-$ git checkout develop
-```
-Once you have the repo on your machine, open Linux terminal on Mac or Cygwin terminal on Windows, go into your local selenium-tests/ches directory, and run:  
-```
+$ cd Testing-Automation/headless/
 $ python3 name_of_test_file.py
 ```
 
-*Note:* For most people, typing
-```
-$ python name_of_test_file.py
-```
-runs name_of_test_file.py in a Python2 environment. But if your alias to Python3 is python, then go ahead and run the second one.  
-
-We must specify python3 because tests should be run in a Python3 environment.  
+You only need to specify python3 if you have both python2 and python3 on your machine.  
 This is because our tests use the functions from the subprocess module that were newly introduced in Python3.
 
 
