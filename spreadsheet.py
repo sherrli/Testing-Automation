@@ -32,16 +32,17 @@ class Spreadsheet:
     # Find a workbook by name and open the first sheet.
     # TODO: make this part more generic??
     def open_sheet(self, testname):
-        if testname=="ChesProdTitleTest":
+        if "Ches" in testname:
             self.sheet = self.client.open("Headless Test Results").get_worksheet(0)
-        elif testname=="LampDevTest":
+        elif "Lamp" in testname:
             self.sheet = self.client.open("Headless Test Results").get_worksheet(1)
-        elif testname=="IdmCampusDirectoryTest":
+        elif "Idm" in testname:
             self.sheet = self.client.open("Headless Test Results").get_worksheet(2)
         else:
+            # Put all other results into the 3rd sheet.
+            spreadsheet = self.client.open("Headless Test Results").get_worksheet(3)
             # create a new worksheet in your spreadsheet
-            spreadsheet = self.client.open("Headless Test Results")
-            self.sheet = spreadsheet.add_worksheet(title=testname, rows="500", cols="20")
+            #self.sheet = spreadsheet.add_worksheet(title=testname, rows="500", cols="20")
 
     # Log the test result
     def write_cell(self, row, col, msg):
