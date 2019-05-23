@@ -1,12 +1,13 @@
 #!/usr/local/bin/python
 # coding=utf-8
 
-# Headless firefox title test for jenkins build.
+# Headless selenium test used in the Jenkins pipeline.
 
 intro="""
 ----------------------------------------------------------------
-File        : test_wcsi.py
-Description : Test for wcsi, another example of a solo smoke test.
+File        : exampletest_wcsi.py
+Description : Solo test for wcsi, write to spreadsheet.
+Author      : Sherri Li
 ----------------------------------------------------------------
 """
 print(intro)
@@ -22,16 +23,14 @@ import time
 import datetime
 import timeit
 import check_status
+import spreadsheet
 
-
-
-# Generate log folder and file.
-# Default log level is INFO (everything). Go to create_log.py to change.
-#folderName = create_log.createLog("ChesProdTitle")
 
 class WcsiTest(unittest.TestCase):
     browser = None
     site = 'https://webapps.ucsc.edu/wcsi'
+    siteName = 'Wcsi'
+    today = str(datetime.datetime.now())
 
 
 ###################################
@@ -39,7 +38,9 @@ class WcsiTest(unittest.TestCase):
 ###################################
     def __init__(self, *args, **kwargs):
         super(WcsiTest, self).__init__(*args, **kwargs)
-        # subclass
+        self.spreadsheet = spreadsheet.Spreadsheet()
+        self.spreadsheet.open_sheet(str(type(self).__name__))
+        self.next_row = self.spreadsheet.next_available_row() + 1
 
     def __del__(self):
         if self.browser is not None:
@@ -66,10 +67,15 @@ class WcsiTest(unittest.TestCase):
             site = self.site
 
             try:
+                self.spreadsheet.write_cell(row,1,siteName)
+                self.spreadsheet.write_cell(row,2,type(self).__name__)
+                self.spreadsheet.write_cell(row,3, site)
+                self.spreadsheet.write_cell(row,4,self.today[:16])
                 # Check that HTTP status code is 200, 301, or 302.
                 # Call the function to get status code from file check_status.py.
                 result = check_status.checkStatus(site, [200, 301, 302])
                 if result != True:
+                    self.spreadsheet.write_cell(row,5,"fail\nstatus " + result)
                     print("FAIL: "+site+" returns invalid http response code of "+str(result))
                 assert(result==True)
 
@@ -88,11 +94,13 @@ class WcsiTest(unittest.TestCase):
                 browser.find_element_by_link_text("Intr Native Am His").click()
                 # Assert that link to catalog is present
                 assert(browser.find_element_by_link_text("History Course Catalog") is not None)
-
+                self.spreadsheet.write_cell(row,5,"pass")
                 timeElapsed = timeit.default_timer() - timeStart
+                self.spreadsheet.write_cell(row,6,round(timeElapsed, 5))
                 print("passed: " + site + " tested in " + str(round(timeElapsed, 4)) + " seconds")
 
             except Exception as e:
+                self.spreadsheet.write_cell(row,5,"fail")
                 print(e)
                 raise e
 
