@@ -65,6 +65,7 @@ class WcsiTest(unittest.TestCase):
             assert(self.browser is not None)
             browser = self.browser
             site = self.site
+            row = self.next_row
 
             try:
                 self.spreadsheet.write_cell(row,1,siteName)
