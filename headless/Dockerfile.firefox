@@ -1,6 +1,4 @@
 FROM ubuntu:latest
-COPY . /home/ubuntu
-WORKDIR /home/ubuntu
 
 RUN apt-get update -qq \
   && apt-get install -y curl \
@@ -27,4 +25,7 @@ RUN wget --no-verbose -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geck
   && ln -fs /opt/geckodriver-$GECKODRIVER_VERSION /usr/bin/geckodriver \
   && ln -fs /opt/geckodriver-$GECKODRIVER_VERSION /usr/bin/wires
   
-ENTRYPOINT ["python3", "script_name.py"]
+RUN mkdir -p /home/log
+
+COPY . /home/ubuntu
+WORKDIR /home/ubuntu
