@@ -1,0 +1,30 @@
+version: "3.6"
+services:
+  selenium_test:
+    build:
+      context: .
+      dockerfile: /Testing-Automation/headless/Dockerfile.firefox
+    image: verify-test
+    logging:
+      driver: "json-file"
+      options:
+      max-size: "10m"
+      max-file: "100"
+    # docker-compose must be run from same directory as .env
+    # env_file:
+    #   - /path/to/.env
+    container_name: verify-test
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: bind
+        source: /path/to/log/on/host
+        target: /home/log
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    privileged: true
+    network_mode: 'host'
+    pid: 'host'
+    entrypoint: python3 script.py
